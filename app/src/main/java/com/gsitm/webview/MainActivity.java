@@ -31,25 +31,29 @@ public class MainActivity extends AppCompatActivity {
 
         mWebView = findViewById(R.id.web_view);
 
-        mWebView.setWebViewClient(new WebViewClient());
         mWebView.setWebChromeClient(new WebChromeClient());
-        mWebView.setWebViewClient(new WebViewClient() {
 
+        //분리
+        mWebView.setWebViewClient(new WebViewClient() {
 
             //url 가로채는 부분
             public boolean shouldOverrideUrlLoading(WebView view, String url)
             {
 
+                Uri uri = Uri.parse(url);
 
                 //gsepartner 일 경우
-                if(url.startsWith("gsepartner:")){
-                    Uri uri = Uri.parse(url);
+                if(uri.getScheme().equals("gsepartner:")){
 
-                    //파라미터 파싱 -> 콜백 함수명 추출
+
+                    //파라미터 파싱 -> 콜백 함수명 추출 -> 맵형태로
                     String callBack = uri.getQueryParameter("callback");
+                    String data1 = uri.getQueryParameter("sendData1");
+                    String data2 = uri.getQueryParameter("sendData2");
 
 
-                    Log.d("웹뷰", "gsepartner호출 "+url.toString()+" 콜백 함수명: "+callBack);
+                    Log.d("웹뷰", "URL "+url.toString()+" 콜백 함수명: "+callBack);
+                    Log.d("웹뷰", "data1: "+data1+" data2: "+data2);
 
                     //웹으로 전송할 앱내에 데이터
                     JSONObject json = new JSONObject();
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     //웹 자바스크립트 콜백함수 호출
-                    mWebView.loadUrl("javascript:"+callBack+"("+json+")");
+                    view.loadUrl("javascript:"+callBack+"("+json+")");
 
 
                 }else{
