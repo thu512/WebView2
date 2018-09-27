@@ -1,0 +1,46 @@
+<DOCTYPE! html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Basic html layout example</title>
+
+  <link rel="stylesheet" type="text/css" href="css/sample.css">
+
+  <script type="text/javascript" src="js/dist/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="js/sample.js"></script>
+
+  <style type="text/css">
+      html {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          
+          padding-top: env(safe-area-inset-top);
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
+          padding-bottom: env(safe-area-inset-bottom);
+      }
+  </style>
+  
+</head>
+<body class="hello">
+
+  <header>
+    <h1>< header ></h1><br />
+    <button style="color: #000;" onClick="Common.sendDataToApp('sendData1=GSITM&sendData2=100');">Click Me!!!(Send Data)</button>
+  </header>
+
+  <section>
+    Send Data<br />
+    <p style="font-size:15px;" id="sendData">Send Data</p>
+
+    Receive Data<br />
+    <p style="font-size:15px;" id="recevieData">Receive Data</p>
+  </section>
+
+  <footer>
+    < footer >
+  </footer>
+</body>
+</html>
