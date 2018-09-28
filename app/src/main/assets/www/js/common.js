@@ -11,7 +11,22 @@ var Common = {
         var param = param;
         var callbackFunc = "Common.receiveDataFromAppJsonParam";
         // Send App
-        window.location.href = "gsepartner://sampleFuntion?" + param + "&callback=" + callbackFunc;
+        //window.location.href = "gsepartner://sampleFuntion?" + param + "&callback=" + callbackFunc;
+
+        var obj = new Object();
+        obj.callback = callbackFunc;
+        var jsonData = JSON.stringify(obj);
+
+        $.ajax({
+          type: 'POST',
+          url: "gsepartner://sampleFuntion",
+          dataType: 'text/html',
+          data: jsonData,
+          success: function(data){
+                    console.log('성공');
+                   }
+        })
+
     },
     /**
      * APP에서 Json Data를 받는다.
